@@ -1,0 +1,28 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    env_file:
+      - .env
+    ports:
+      - "${N8N_PORT:-5678}:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_SECURE=false
+      - N8N_EDITOR_BASE_URL=http://localhost:5678
+      - N8N_PUBLIC_API_DISABLED=false
+      - N8N_DIAGNOSTICS_ENABLED=false
+
+      # Store workflows on the filesystem
+      - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - N8N_PERSONALIZATION_ENABLED=false
+      - EXECUTIONS_PROCESS=main
+      - N8N_WORKFLOW_DIR=/home/node/.n8n/custom-workflows
+
+      # Let credential keys be loaded from env
+      #- GCLOUD_API_KEY=${GOOGLE_API_KEY}
+    container_name: n8n-${CLIENT}-${PROJECT}
+    volumes:
+      - ./workflows:/home/node/.n8n/workflows
+      - ./data:/home/node/.n8n
+    restart: unless-stopped
