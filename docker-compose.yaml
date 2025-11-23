@@ -4,30 +4,52 @@ services:
     env_file:
       - .env
     ports:
-      - "${N8N_PORT:-5678}:5678"
-    environment:
-      # Basic settings
-      - N8N_HOST=localhost
-      - N8N_PORT=5678
-      - N8N_SECURE=false
-      - N8N_EDITOR_BASE_URL=http://localhost:${N8N_PORT:-5678}
-      - N8N_PUBLIC_API_DISABLED=false
-      - N8N_DIAGNOSTICS_ENABLED=false
-      
-      # Encryption key for credentials
-      - N8N_ENCRYPTION_KEY=${ENCRYPTION_KEY}
-      
-      # Enable version control (Git integration)
-      - N8N_VERSION_CONTROL_ENABLED=true
-      - N8N_VERSION_CONTROL_GIT_FOLDER=/home/node/.n8n/git
-      
-      # Set workflows branch (separate from main code)
-      - N8N_VERSION_CONTROL_DEFAULT_BRANCH=workflows
-
-      # Let credential keys be loaded from env
-      #- GCLOUD_API_KEY=${GOOGLE_API_KEY}     
-    container_name: n8n-${CLIENT:-default}-${PROJECT:-project}
+      - "${N8N_PORT}:5678"
+    container_name: n8n-${CLIENT}-${PROJECT}
     volumes:
       # Mount data folder for database and other files
       - ./data:/home/node/.n8n
     restart: unless-stopped
+    environment:
+      # Basic settings
+      - N8N_HOST=localhost
+      - N8N_PORT=${N8N_PORT}
+      - DB_SQLITE_VACUUM_ON_STARTUP=true
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-America/Mexico_City}
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - N8N_COMMUNITY_PACKAGES_ENABLED=true
+
+      # Workflows
+      - WORKFLOWS_DEFAULT_NAME=${PROJECT_NAME:-Project} Workflow
+      - N8N_WORKFLOW_TAGS_DISABLED=false
+
+      # Node configuration
+      - NODE_FUNCTION_ALLOW_BUILTIN=*
+      - NODE_FUNCTION_ALLOW_EXTERNAL=true
+      - N8N_PYTHON_ENABLED=true
+
+      # Executions
+      - EXECUTIONS_DATA_SAVE_ON_ERROR=all
+      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=all
+      - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=true
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+
+      # Disable telemetry for local development
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_VERSION_NOTIFICATIONS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+
+      # Log level
+      - N8N_LOG_LEVEL=${N8N_LOG_LEVEL:-info}
+      - N8N_LOG_OUTPUT=console
+
+      #- GCLOUD_API_KEY=${GOOGLE_API_KEY}     
+    
+    networks:
+      - n8n-network
+
+networks:
+  n8n-network:
+    name: n8n-${CLIENT_NAME:-client}-${PROJECT_NAME:-project}
+    driver: bridge
