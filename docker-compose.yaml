@@ -27,7 +27,6 @@ services:
       # Let credential keys be loaded from env
       #- GCLOUD_API_KEY=${GOOGLE_API_KEY}     
     container_name: n8n-${CLIENT:-default}-${PROJECT:-project}
-    user: "1000:1000"
     volumes:
       # Mount data folder for database and other files
       - ./data:/home/node/.n8n
