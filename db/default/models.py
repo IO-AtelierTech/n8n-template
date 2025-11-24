@@ -1,12 +1,17 @@
-import uuid
+from typing import Optional
+from uuid import UUID
 
-from sqlmodel import Field, SQLModel
+from sqlalchemy.dialects.postgresql import UUID as UUIDSA
+from sqlmodel import Column, Field, SQLModel, text
 
 
 class Timestamp(SQLModel, table=True):
-    id: uuid.UUID = Field(
-        primary_key=True, sa_column_kwargs={"server_default": "gen_random_uuid()"}
+    id: Optional[UUID] = Field(
+        sa_column=Column(
+            UUIDSA(as_uuid=True),
+            server_default=text("gen_random_uuid()"),
+            primary_key=True,
+        )
     )
     readable_date: str
     day_of_week: str
-    timezone: str | None = None  # <— new field
