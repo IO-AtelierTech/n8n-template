@@ -1,0 +1,14 @@
+[project]
+name = "default"
+version = "0.1.0"
+requires-python = ">=3.13"
+
+dependencies = [
+    "sqlmodel",
+    "psycopg[binary]",
+    "python-dotenv>=1.2.1",
+    "alembic>=1.17.2",
+]
+
+[tool.uv]
+# Nothing special; but uv recognizes this is a package.

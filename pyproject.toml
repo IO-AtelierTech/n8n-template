@@ -1,0 +1,9 @@
+[project]
+name = "n8n-dummy-default"
+requires-python = ">=3.13"
+version = "0.1"
+
+[tool.uv.workspace]
+members = [
+  "db/default"
+]

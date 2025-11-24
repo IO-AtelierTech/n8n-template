@@ -1,3 +1,11 @@
 .env
 data/n8n/*.log
 data/psql/
+
+
+# Ignore per-workflow python build artifacts
+db/*/.venv/
+db/*/*.egg-info/
+db/*/dist/
+
+**/*/__pycache__/

@@ -57,6 +57,9 @@ services:
     container_name: postgres-${CLIENT}-${PROJECT}
     restart: unless-stopped
 
+    ports:
+      - "5432:5432"
+
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
