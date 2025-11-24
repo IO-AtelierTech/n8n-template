@@ -44,7 +44,10 @@ services:
       - N8N_LOG_LEVEL=${N8N_LOG_LEVEL:-info}
       - N8N_LOG_OUTPUT=console
 
+      # API CREDENTIALS
       #- GCLOUD_API_KEY=${GOOGLE_API_KEY}     
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     
     networks:
       - n8n-network
