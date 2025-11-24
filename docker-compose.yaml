@@ -60,7 +60,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
 
     volumes:
-      - ./data/n8n:/var/lib/postgresql
+      - ./data/psql:/var/lib/postgresql
 
     networks:
       - n8n-network
