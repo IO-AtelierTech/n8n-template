@@ -1,5 +1,6 @@
 .env
 data/n8n/*.log
+data/n8n/crash.journal
 data/psql/
 
 
