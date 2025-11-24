@@ -6,6 +6,9 @@ PSQL_USER := env("POSTGRES_USER")
 CLIENT := env("CLIENT")
 PROJECT := env("PROJECT")
 
+default:
+  @just --list
+
 # Run n8n
 up:
     docker compose up -d
