@@ -1,0 +1,2 @@
+{"__type":"$$EventMessageAudit","id":"cb26e290-1bf7-4aaa-a86b-a20a9307776c","ts":"2025-11-24T01:03:21.135+00:00","eventName":"n8n.audit.workflow.created","message":"n8n.audit.workflow.created","payload":{"userId":"55c76935-9ab1-42b1-9a1b-161db4e7a428","_email":"danyiel5978@gmail.com","_firstName":"Danyiel","_lastName":"Colin","globalRole":"global:owner","workflowId":"ds0v7ESBhpLEBb7Q","workflowName":"DB Heartbeat"}}
+{"__type":"$$EventMessageConfirm","confirm":"cb26e290-1bf7-4aaa-a86b-a20a9307776c","ts":"2025-11-24T01:03:21.136+00:00","source":{"id":"0","name":"eventBus"}}

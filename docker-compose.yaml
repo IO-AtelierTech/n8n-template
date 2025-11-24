@@ -8,7 +8,7 @@ services:
     container_name: n8n-${CLIENT}-${PROJECT}
     volumes:
       # Mount data folder for database and other files
-      - ./data:/home/node/.n8n
+      - ./data/n8n:/home/node/.n8n
     restart: unless-stopped
     environment:
       # Basic settings
@@ -60,7 +60,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
 
     volumes:
-      - ./postgres-data:/var/lib/postgresql
+      - ./data/n8n:/var/lib/postgresql
 
     networks:
       - n8n-network
