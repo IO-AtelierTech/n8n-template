@@ -20,5 +20,5 @@ export:
     docker exec n8n-{{CLIENT}}-{{PROJECT}} n8n export:workflow --output=/home/node/.n8n/workflows
 
 # Open an interactive PSQL console for the project DB
-db workflow="default":
+db workflow="postgres":
     docker exec -it postgres-{{CLIENT}}-{{PROJECT}} psql -U {{PSQL_USER}} -d {{workflow}}
