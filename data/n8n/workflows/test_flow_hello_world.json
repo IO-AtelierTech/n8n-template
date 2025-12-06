@@ -1,0 +1,94 @@
+{
+  "updatedAt": "2025-12-06T15:53:57.885Z",
+  "createdAt": "2025-12-06T15:53:57.885Z",
+  "id": "8Dd8KxA52ewL6Jti",
+  "name": "Test Flow - Hello World",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "set-message",
+      "name": "Set Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        450,
+        300
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "message",
+              "name": "message",
+              "value": "Hello from n8n!",
+              "type": "string"
+            },
+            {
+              "id": "timestamp",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "f87a260b-60a4-4cce-aa30-2f2479f3ed5c",
+  "versionCounter": 2,
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "updatedAt": "2025-12-06T15:53:57.889Z",
+      "createdAt": "2025-12-06T15:53:57.889Z",
+      "role": "workflow:owner",
+      "workflowId": "8Dd8KxA52ewL6Jti",
+      "projectId": "hKXvtyTatNBojPw7",
+      "project": {
+        "updatedAt": "2025-12-06T15:04:03.215Z",
+        "createdAt": "2025-12-06T15:02:41.755Z",
+        "id": "hKXvtyTatNBojPw7",
+        "name": "Danyiel Colin <danyiel5978@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}

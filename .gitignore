@@ -1,6 +1,9 @@
 .env
 data/n8n/*.log
 data/n8n/crash.journal
+data/n8n/database.sqlite
+data/n8n/.n8n-credentials-key
+data/n8n/.workflows-imported
 data/psql/
 
 

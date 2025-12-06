@@ -37,4 +37,4 @@ def init_db(workflow):
 
 
 if __name__ == "__main__":
-    init_db("default")
+    init_db("dummy-db")

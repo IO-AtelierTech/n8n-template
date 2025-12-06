@@ -1,0 +1,107 @@
+{
+  "updatedAt": "2025-12-06T22:19:54.000Z",
+  "createdAt": "2025-12-06T15:57:16.960Z",
+  "id": "urquIVo3OUK16Gvz",
+  "name": "Default Flow - Timestamp Logger",
+  "description": null,
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO timestamp (readable_date, day_of_week) VALUES ('{{ $now.format(\"yyyy-MM-dd HH:mm:ss\") }}', '{{ $now.format(\"EEEE\") }}') RETURNING id, readable_date, day_of_week",
+        "options": {}
+      },
+      "id": "postgres-insert",
+      "name": "Insert Timestamp",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        464,
+        304
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "oiNxshmjfz2Sz553",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Default Flow - Timestamp Logger\n\nThis workflow runs every 5 minutes and inserts a timestamp into the PostgreSQL database.\n\n**Database:** `dummy-db`\n**Table:** `timestamp`\n\n### First-Time Setup:\n1. Run `just db-update` to create the table\n2. In n8n, create a Postgres credential:\n   - **Host:** `postgres`\n   - **Database:** `dummy-db`\n   - **User:** from `.env` (POSTGRES_USER)\n   - **Password:** from `.env` (POSTGRES_PASSWORD)\n3. Update the 'Insert Timestamp' node to use your credential\n4. Activate this workflow",
+        "height": 380,
+        "width": 340
+      },
+      "id": "sticky-note",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        48
+      ]
+    }
+  ],
+  "connections": {
+    "Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Insert Timestamp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "5210e3f9-4154-40ca-93f3-f5ffa4aaa50b",
+  "versionCounter": 3,
+  "triggerCount": 0,
+  "tags": [],
+  "shared": [
+    {
+      "updatedAt": "2025-12-06T15:57:16.966Z",
+      "createdAt": "2025-12-06T15:57:16.966Z",
+      "role": "workflow:owner",
+      "workflowId": "urquIVo3OUK16Gvz",
+      "projectId": "hKXvtyTatNBojPw7",
+      "project": {
+        "updatedAt": "2025-12-06T15:04:03.215Z",
+        "createdAt": "2025-12-06T15:02:41.755Z",
+        "id": "hKXvtyTatNBojPw7",
+        "name": "Danyiel Colin <danyiel5978@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null
+      }
+    }
+  ]
+}
