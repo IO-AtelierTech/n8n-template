@@ -21,10 +21,7 @@
       "name": "Every 5 Minutes",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [
-        256,
-        304
-      ]
+      "position": [256, 304]
     },
     {
       "parameters": {
@@ -36,10 +33,7 @@
       "name": "Insert Timestamp",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
-      "position": [
-        464,
-        304
-      ],
+      "position": [464, 304],
       "credentials": {
         "postgres": {
           "id": "oiNxshmjfz2Sz553",
@@ -57,10 +51,7 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        -336,
-        48
-      ]
+      "position": [-336, 48]
     }
   ],
   "connections": {
@@ -105,3 +96,4 @@
     }
   ]
 }
+

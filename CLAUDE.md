@@ -149,11 +149,19 @@ The template includes n8n MCP configuration in `.mcp.json`:
 - Enables workflow management via Claude Code
 - Use `/mcp` to check connection status
 
+## Git Workflow
+
+**Before every commit**, run `just export-flows` to export n8n workflows to JSON. This ensures workflow changes are version-controlled.
+
+```bash
+just export-flows && git add data/n8n/workflows/ && git commit -m "your message"
+```
+
 ## Development Tips
 
 1. Always check container status: `docker compose ps`
 2. View n8n logs: `docker compose logs -f n8n`
 3. View PostgreSQL logs: `docker compose logs -f postgres`
-4. Export workflows before committing: `just export`
+4. **Export workflows before committing**: `just export-flows`
 5. Use `just db-shell` to debug database issues
 6. Credentials are stored in `database.sqlite` (gitignored)
